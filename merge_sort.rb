@@ -1,9 +1,9 @@
 def merge_sort(array)
-  return array if (array.length) > 1
+  return if array.length == 1
   left, right = divide(array)
   merge_sort(left)
   merge_sort(right)
-  merge(left,right,array)
+  merge(left,right,array)  
 end
 
 
@@ -21,6 +21,7 @@ def merge(left,right,array)
   array_index = 0
   left_length = left.length - 1
   right_length = right.length - 1
+
   while (left_index <= left_length) && (right_index <= right_length)
   	if (left[left_index]) < (right[right_index])
   	  array[array_index] = left[left_index]
@@ -36,12 +37,14 @@ def merge(left,right,array)
 	array[array_index] = left[left_index]
   	left_index += 1
   	array_index +=1
-  	end
+  end
+
   while (right_index <= right_length)
 	array[array_index] = right[right_index]
   	right_index += 1
   	array_index +=1
-  	end
+  end
+  return array
 end
-
-puts merge_sort([1,3,5,6,2,4,7,8,9])
+array = 100.times.map{|x| x = 1 + rand(400)}
+puts merge_sort(array)
